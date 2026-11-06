@@ -1,0 +1,42 @@
+{
+  "results": [
+    {
+      "name": "Cadastro/login rejeitam senhas truncáveis e multibyte",
+      "passed": true
+    },
+    {
+      "name": "Hash legado autentica; senha errada e excesso de bytes são recusados",
+      "passed": true
+    },
+    {
+      "name": "Conta criada aparece após nova consulta, sem vazar para outro treinador",
+      "passed": true
+    },
+    {
+      "name": "Duplicidade de email é 409 na criação e edição; atualização é atômica",
+      "passed": true
+    },
+    {
+      "name": "Nome consistente em users, profiles e ranking",
+      "passed": true
+    },
+    {
+      "name": "Capturas persistem com data curta e timestamp; datas impossíveis retornam 400",
+      "passed": true
+    },
+    {
+      "name": "Equipes validam nome, booleanos, duplicatas, propriedade e seis integrantes",
+      "passed": true
+    },
+    {
+      "name": "Exclusão em cascade, progressão e revogação de conta excluída",
+      "passed": true
+    },
+    {
+      "name": "PokéAPI real: catálogo, detalhes, evoluções e sincronização",
+      "passed": true
+    }
+  ],
+  "liveRequested": true,
+  "database": "C:\\Users\\Prefeitura\\Documents\\PKFRONT\\docs\\correcoes-2026-11-05\\.data\\regressao-1793879367672.db"
+}

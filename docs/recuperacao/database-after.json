@@ -1,0 +1,141 @@
+{
+  "originalData": {
+    "Badge": {
+      "columns": [
+        "id",
+        "name",
+        "region",
+        "description",
+        "badgeNumber"
+      ],
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "CapturedPokemon": {
+      "columns": [
+        "id",
+        "userId",
+        "pokemonId",
+        "nickname",
+        "level",
+        "captureDate",
+        "captureLocation",
+        "isFavorite",
+        "hp",
+        "attack",
+        "defense",
+        "specialAttack",
+        "specialDefense",
+        "speed",
+        "createdAt",
+        "updatedAt",
+        "notes"
+      ],
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "Pokemon": {
+      "columns": [
+        "id",
+        "name",
+        "pokedexNumber",
+        "type",
+        "type2",
+        "height",
+        "weight",
+        "ability",
+        "description",
+        "evolution",
+        "legendary",
+        "spriteUrl",
+        "cryUrl"
+      ],
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "Profile": {
+      "columns": [
+        "id",
+        "userId",
+        "fullName",
+        "birthDate",
+        "avatarUrl",
+        "createdAt",
+        "updatedAt",
+        "trainerName",
+        "region",
+        "trainerLevel",
+        "favoritePokemonId",
+        "username",
+        "bio"
+      ],
+      "count": 1,
+      "sha256": "294788520cc2b5021ce922fe9a5fea0fd83a2f0c0705d3dfd3b453a8776b492c"
+    },
+    "Team": {
+      "columns": [
+        "id",
+        "userId",
+        "name",
+        "isActive",
+        "createdAt",
+        "updatedAt",
+        "description"
+      ],
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "TeamPokemon": {
+      "columns": [
+        "id",
+        "teamId",
+        "capturedPokemonId",
+        "position",
+        "createdAt"
+      ],
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "TrainerBadge": {
+      "columns": [
+        "id",
+        "userId",
+        "badgeId",
+        "obtainedAt"
+      ],
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "User": {
+      "columns": [
+        "id",
+        "name",
+        "email",
+        "createdAt",
+        "passwordHash"
+      ],
+      "count": 6,
+      "sha256": "06cf838d85db8beb933c14b9a6bf8f403d556ba950aba29a4deb9652189f8bb3"
+    },
+    "_prisma_migrations": {
+      "columns": [
+        "id",
+        "checksum",
+        "finished_at",
+        "migration_name",
+        "logs",
+        "rolled_back_at",
+        "started_at",
+        "applied_steps_count"
+      ],
+      "count": 4,
+      "sha256": "6231b1d64d64f0a32c901a159b17435a274ed75cd5ec8a43fcf421e3dd37693f"
+    }
+  },
+  "expectedAdditions": {
+    "sessionVersionDefault": 0,
+    "PasswordResetTokenRows": 0,
+    "migration": "20261104190000_password_reset"
+  },
+  "foreignKeyCheck": []
+}

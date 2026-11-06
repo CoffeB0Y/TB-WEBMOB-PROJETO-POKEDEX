@@ -1,0 +1,52 @@
+{
+  "date": "2026-11-04",
+  "builds": {
+    "frontend": "passed",
+    "backend": "passed"
+  },
+  "unitTests": {
+    "passed": 17,
+    "suites": 2
+  },
+  "httpE2e": {
+    "passed": 4
+  },
+  "databaseIntegration": "passed; CRUD, ownership, six-member teams, profile, eight badges",
+  "pokeAPI": "passed with real external data",
+  "recoveryAPI": "passed with local TLS SMTP; tokens hashed, expires, single-use, race, UTF-8 password byte limit, old password rejected, old sessions revoked, errors and limits",
+  "recoveryBrowser": "passed; desktop and mobile",
+  "screenshots": {
+    "original15ScreensRegression": 35,
+    "passwordRecovery": 4
+  },
+  "gmailDelivery": "not verified; SMTP_USER, SMTP_PASS and SMTP_FROM not configured",
+  "sourceDatabase": {
+    "originalRowsAndColumnsPreserved": true,
+    "foreignKeyCheck": [],
+    "newResetTokens": 0,
+    "additiveMigration": "20261104190000_password_reset"
+  },
+  "credentials": {
+    "hardcodedRealCredentials": false,
+    "existingEnvModified": false
+  },
+  "runtimeServers": "verification servers stopped",
+  "limitations": [
+    "real Gmail delivery unverified",
+    "production HTTPS and other engines unverified",
+    "no durable email queue or distributed rate limit",
+    "clean npm ci not executed"
+  ],
+  "frontendLint": {
+    "errors": 0,
+    "warnings": 12
+  },
+  "backendLint": {
+    "errors": 540,
+    "warnings": 1
+  },
+  "authLint": {
+    "errors": 0,
+    "warnings": 4
+  }
+}

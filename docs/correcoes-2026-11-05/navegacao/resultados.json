@@ -1,0 +1,10 @@
+{
+  "results": [
+    "Catálogo e ranking públicos sem autenticação",
+    "Sidebar em catálogo, ranking e detalhes; navegação e recarga por cookie",
+    "Conta criada persiste na lista, ações restritas à própria conta e nomes sincronizados",
+    "Escape e fechar preservam modal enquanto salva; equipe persistida",
+    "Logout restaura acesso público"
+  ],
+  "pageErrors": []
+}

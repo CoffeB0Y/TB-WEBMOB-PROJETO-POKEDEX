@@ -1,0 +1,23 @@
+GET http://localhost:3000/api/users
+
+###
+POST http://localhost:3000/api/users
+Content-Type: application/json
+
+{
+    "name": "teste da silva",
+    "email": "teste@teste.com",
+    "passwordHash": "abc123"
+}
+
+###
+PUT http://localhost:3000/api/users/1
+Content-Type: application/json
+
+{
+    "name": "usuario alterado",
+    "email": "outroemail@upf.br"
+}
+
+###
+DELETE http://localhost:3000/api/users/1

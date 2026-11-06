@@ -1,0 +1,38 @@
+{
+  "Badge": {
+    "count": 0,
+    "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "CapturedPokemon": {
+    "count": 0,
+    "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "Pokemon": {
+    "count": 0,
+    "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "Profile": {
+    "count": 1,
+    "sha256": "294788520cc2b5021ce922fe9a5fea0fd83a2f0c0705d3dfd3b453a8776b492c"
+  },
+  "Team": {
+    "count": 0,
+    "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "TeamPokemon": {
+    "count": 0,
+    "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "TrainerBadge": {
+    "count": 0,
+    "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "User": {
+    "count": 6,
+    "sha256": "06cf838d85db8beb933c14b9a6bf8f403d556ba950aba29a4deb9652189f8bb3"
+  },
+  "_prisma_migrations": {
+    "count": 4,
+    "sha256": "6231b1d64d64f0a32c901a159b17435a274ed75cd5ec8a43fcf421e3dd37693f"
+  }
+}

@@ -1,0 +1,58 @@
+export const BADGE_RULES = [
+  {
+    number: 1,
+    name: 'Insígnia da Pedra',
+    description: 'Registre 5 capturas.',
+    metric: 'captures',
+    target: 5,
+  },
+  {
+    number: 2,
+    name: 'Insígnia da Cascata',
+    description: 'Capture 3 espécies diferentes do tipo Água.',
+    metric: 'water',
+    target: 3,
+  },
+  {
+    number: 3,
+    name: 'Insígnia do Trovão',
+    description: 'Capture 2 espécies diferentes do tipo Elétrico.',
+    metric: 'electric',
+    target: 2,
+  },
+  {
+    number: 4,
+    name: 'Insígnia do Arco-íris',
+    description: 'Capture 3 espécies diferentes do tipo Planta.',
+    metric: 'grass',
+    target: 3,
+  },
+  {
+    number: 5,
+    name: 'Insígnia da Alma',
+    description: 'Registre 50 capturas.',
+    metric: 'captures',
+    target: 50,
+  },
+  {
+    number: 6,
+    name: 'Insígnia do Pântano',
+    description: 'Alcance o nível 30 de treinador.',
+    metric: 'level',
+    target: 30,
+  },
+  {
+    number: 7,
+    name: 'Insígnia do Vulcão',
+    description: 'Capture 3 espécies diferentes do tipo Fogo.',
+    metric: 'fire',
+    target: 3,
+  },
+  {
+    number: 8,
+    name: 'Insígnia da Terra',
+    description: 'Capture as 151 espécies de Kanto.',
+    metric: 'kanto',
+    target: 151,
+  },
+] as const;

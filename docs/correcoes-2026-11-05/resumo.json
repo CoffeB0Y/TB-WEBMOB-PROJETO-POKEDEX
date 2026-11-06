@@ -1,0 +1,46 @@
+{
+  "date": "2026-11-05",
+  "builds": {
+    "frontend": "passed",
+    "backend": "passed"
+  },
+  "typechecks": {
+    "frontend": "passed",
+    "backend": "passed"
+  },
+  "unit": {
+    "passed": 25,
+    "failed": 0
+  },
+  "httpGuard": {
+    "passed": 4,
+    "failed": 0
+  },
+  "httpRegressionGroups": 9,
+  "originalIntegration": "passed",
+  "pokeapiLive": "passed; sandbox EACCES diagnosed, authorized network request succeeded",
+  "visualScreenshots": 35,
+  "navigationScenarios": 5,
+  "recovery": {
+    "api": "passed",
+    "smtp": "local TLS with trusted test certificate; Gmail delivery not verified",
+    "browser": "passed",
+    "originalDatabaseUsed": false
+  },
+  "lint": {
+    "backend": {
+      "errors": 0,
+      "warnings": 0
+    },
+    "frontend": {
+      "errors": 0,
+      "warnings": 12
+    }
+  },
+  "databasePreviousRecordsPreserved": true,
+  "remaining": [
+    "Real SMTP configuration and Gmail delivery verification",
+    "Legacy passwords over 72 UTF-8 bytes require reset",
+    "12 frontend lint warnings; no errors"
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "api": "passed",
+  "smtp": "local TLS with trusted test certificate; Gmail delivery not verified",
+  "browser": "passed",
+  "originalDatabaseUsed": false
+}

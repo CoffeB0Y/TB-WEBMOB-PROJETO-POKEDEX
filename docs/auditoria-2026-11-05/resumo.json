@@ -1,0 +1,27 @@
+{
+  "date": "2026-11-05",
+  "backendBuild": "passed",
+  "frontendBuild": "passed",
+  "frontendTypecheck": "passed",
+  "unitTests": {
+    "suites": 2,
+    "passed": 17
+  },
+  "httpE2e": {
+    "suites": 1,
+    "passed": 4,
+    "scope": "isolated auth controller; not full CRUD"
+  },
+  "crudIntegration": "passed, existing suite on dedicated regressao.db",
+  "additionalCases": 21,
+  "pokeapiLive": {
+    "status": "unverified",
+    "error": "service returned unavailable; external request failed, cause not established"
+  },
+  "smtp": {
+    "configuredInBackendEnv": false,
+    "actualDeliveryTested": false
+  },
+  "browserScreenshotsRerun": false,
+  "databaseOriginalUnchanged": true
+}

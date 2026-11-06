@@ -1,0 +1,145 @@
+[
+  {
+    "test": "Criar conta na tela users",
+    "status": 201,
+    "evidence": {
+      "createdId": 3
+    }
+  },
+  {
+    "test": "Listagem apos criar outra conta",
+    "status": 200,
+    "evidence": {
+      "ids": [
+        1
+      ],
+      "onlySelf": true
+    }
+  },
+  {
+    "test": "Atualizar conta com email ja existente",
+    "status": 500,
+    "evidence": "Internal server error"
+  },
+  {
+    "test": "Alterar nome pela rota users",
+    "status": 200,
+    "evidence": {
+      "name": "Audit Renamed",
+      "trainerName": "Audit Alpha"
+    }
+  },
+  {
+    "test": "Preencher perfil",
+    "status": 200,
+    "evidence": {
+      "username": "audit_alpha",
+      "avatarUrl": "https://example.test/avatar.png"
+    }
+  },
+  {
+    "test": "Apagar username/avatar como o frontend",
+    "status": 200,
+    "evidence": {
+      "username": null,
+      "avatarUrl": null
+    }
+  },
+  {
+    "test": "Tentar limpar perfil enviando strings vazias",
+    "status": 400,
+    "evidence": [
+      "username must match /^[a-zA-Z0-9_]+$/ regular expression",
+      "username must be longer than or equal to 3 characters",
+      "avatarUrl must be a URL address"
+    ]
+  },
+  {
+    "test": "Criar captura",
+    "status": 201,
+    "evidence": {
+      "id": 1
+    }
+  },
+  {
+    "test": "Nivel null em PATCH de captura",
+    "status": 400,
+    "evidence": "O nível do Pokémon deve estar entre 1 e 100."
+  },
+  {
+    "test": "Data ISO somente yyyy-mm-dd no PATCH",
+    "status": 500,
+    "evidence": "Internal server error"
+  },
+  {
+    "test": "Equipe com nome somente espacos",
+    "status": 201,
+    "evidence": {
+      "name": "   "
+    }
+  },
+  {
+    "test": "Criar equipe com captura propria",
+    "status": 201,
+    "evidence": {
+      "id": 2
+    }
+  },
+  {
+    "test": "isActive null em PATCH de equipe",
+    "status": 500,
+    "evidence": "Internal server error"
+  },
+  {
+    "test": "Consultar captura de outra conta",
+    "status": 404,
+    "evidence": "Pokémon capturado não encontrado."
+  },
+  {
+    "test": "Cadastro aceita senha acima de 72 bytes",
+    "status": 201,
+    "evidence": {
+      "accepted": true
+    }
+  },
+  {
+    "test": "Login com senha diferente apos byte 72",
+    "status": 201,
+    "evidence": {
+      "acceptedDifferentPassword": true
+    }
+  },
+  {
+    "test": "Recuperacao com configuracao local atual",
+    "status": 503,
+    "evidence": "Recuperação de senha temporariamente indisponível."
+  },
+  {
+    "test": "Excluir captura remove integrante por cascade",
+    "status": 200,
+    "evidence": {
+      "remainingMembers": 0
+    }
+  },
+  {
+    "test": "Excluir equipe",
+    "status": 200,
+    "evidence": {
+      "remaining": 0
+    }
+  },
+  {
+    "test": "Excluir propria conta em cascade",
+    "status": 200,
+    "evidence": {
+      "profile": 0,
+      "captures": 0,
+      "teams": 0
+    }
+  },
+  {
+    "test": "Token de conta excluida",
+    "status": 401,
+    "evidence": "Token inválido ou expirado"
+  }
+]

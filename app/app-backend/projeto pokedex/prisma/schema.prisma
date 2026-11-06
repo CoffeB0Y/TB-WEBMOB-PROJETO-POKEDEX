@@ -1,0 +1,169 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider     = "prisma-client"
+  output       = "../prisma/generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  createdById Int?
+  createdBy User? @relation("CreatedAccounts", fields: [createdById], references: [id], onDelete: SetNull)
+  createdAccounts User[] @relation("CreatedAccounts")
+  id           Int      @id @default(autoincrement())
+  name         String
+  email        String   @unique
+  createdAt    DateTime @default(now())
+  sessionVersion Int @default(0)
+  passwordResetTokens PasswordResetToken[]
+  passwordHash String   @default("$2b$10$21V92Zk9GwSDXAdgqRr/oul1AN7/roDDo.q/eqCW35OdH1wUQDg9O")
+
+  profile          Profile?
+  capturedPokemon  CapturedPokemon[]
+  teams            Team[]
+  trainerBadges    TrainerBadge[]
+  @@index([createdById])
+}
+
+model Profile {
+  id        Int       @id @default(autoincrement())
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    Int       @unique
+
+  username  String? @unique
+  bio       String?
+  fullName  String
+  birthDate DateTime?
+  avatarUrl String?
+
+  trainerName    String?
+  region         String?
+  trainerLevel   Int     @default(1)
+  favoritePokemonId Int?
+
+  favoritePokemon Pokemon? @relation("FavoritePokemon", fields: [favoritePokemonId], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Pokemon {
+  id            Int      @id @default(autoincrement())
+  name          String   @unique
+  pokedexNumber Int      @unique
+
+  type          String
+  type2         String?
+
+  height        Float?
+  weight        Float?
+
+  ability       String?
+  description   String?
+  evolution     String?
+  legendary     Boolean  @default(false)
+
+  spriteUrl     String?
+  cryUrl        String?
+
+  capturedPokemon CapturedPokemon[]
+
+  favoriteOfProfiles Profile[] @relation("FavoritePokemon")
+}
+
+model CapturedPokemon {
+  id       Int @id @default(autoincrement())
+
+  userId    Int
+  pokemonId Int
+
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  pokemon   Pokemon @relation(fields: [pokemonId], references: [id], onDelete: Cascade)
+
+  nickname        String?
+  level           Int      @default(1)
+  captureDate     DateTime @default(now())
+  notes           String?
+  captureLocation String?
+  isFavorite      Boolean  @default(false)
+
+  hp             Int?
+  attack         Int?
+  defense        Int?
+  specialAttack  Int?
+  specialDefense Int?
+  speed          Int?
+
+  teamPokemon TeamPokemon[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Team {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  name      String
+  description String?
+  isActive  Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  teamPokemon TeamPokemon[]
+}
+
+model TeamPokemon {
+  id                Int @id @default(autoincrement())
+  teamId            Int
+  capturedPokemonId Int
+  position          Int
+
+  team            Team            @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  capturedPokemon CapturedPokemon @relation(fields: [capturedPokemonId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@unique([teamId, position])
+  @@unique([teamId, capturedPokemonId])
+}
+
+model Badge {
+  id          Int    @id @default(autoincrement())
+  name        String
+  region      String
+  description String?
+  badgeNumber Int
+
+  trainerBadges TrainerBadge[]
+
+  @@unique([region, badgeNumber])
+}
+
+model TrainerBadge {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  badgeId   Int
+  obtainedAt DateTime @default(now())
+
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  badge Badge @relation(fields: [badgeId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, badgeId])
+}
+model PasswordResetToken {
+  tokenHash String @id
+  userId Int
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  usedAt DateTime?
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([expiresAt])
+}

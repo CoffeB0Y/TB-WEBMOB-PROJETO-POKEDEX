@@ -1,0 +1,10 @@
+{
+  "backend": {
+    "errors": 0,
+    "warnings": 0
+  },
+  "frontend": {
+    "errors": 0,
+    "warnings": 12
+  }
+}

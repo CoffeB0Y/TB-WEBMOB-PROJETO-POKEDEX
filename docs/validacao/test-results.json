@@ -1,0 +1,122 @@
+{
+  "date": "2026-11-04",
+  "timezone": "America/Sao_Paulo",
+  "frontendBuild": {
+    "status": "passed",
+    "next": "16.3.4"
+  },
+  "backendBuild": {
+    "status": "passed"
+  },
+  "unit": {
+    "status": "passed",
+    "suites": 1,
+    "tests": 9
+  },
+  "e2e": {
+    "status": "passed",
+    "suites": 1,
+    "tests": 4,
+    "databaseAccess": false
+  },
+  "integration": {
+    "status": "passed",
+    "database": ".verification/test.db",
+    "checks": [
+      "cadastro",
+      "login",
+      "perfil",
+      "isolamento",
+      "validacao",
+      "catalogo publico",
+      "capturas",
+      "equipes ate seis",
+      "progressao"
+    ]
+  },
+  "pokeapiLive": {
+    "status": "passed",
+    "checks": [
+      "catalogo",
+      "tipo eletrico",
+      "detalhes",
+      "seis estatisticas",
+      "descricao",
+      "evolucoes",
+      "imagem",
+      "sincronizacao e IDs"
+    ]
+  },
+  "visual": {
+    "status": "passed",
+    "screenshots": 34,
+    "viewports": [
+      {
+        "width": 1440,
+        "height": 1000
+      },
+      {
+        "width": 390,
+        "height": 844
+      }
+    ],
+    "pageErrors": 0,
+    "pageHorizontalOverflow": 0
+  },
+  "databasePreservation": {
+    "status": "passed",
+    "allTableCountsAndHashesIdentical": true,
+    "foreignKeyCheck": "passed"
+  },
+  "lint": {
+    "backend": {
+      "scope": "backend/src",
+      "errors": 693,
+      "warnings": 2,
+      "rules": {
+        "prettier/prettier": 679,
+        "@typescript-eslint/no-unused-vars": 10,
+        "@typescript-eslint/require-await": 2,
+        "@typescript-eslint/no-floating-promises": 1,
+        "@typescript-eslint/no-unsafe-argument": 1,
+        "@typescript-eslint/no-unnecessary-type-assertion": 1,
+        "@typescript-eslint/no-unsafe-member-access": 1
+      },
+      "note": "Passivo encontrado antes das correções desta rodada; nenhuma mudança em backend/src nesta validação."
+    },
+    "frontend": {
+      "scope": "frontend/app",
+      "errors": 0,
+      "warnings": 12,
+      "rules": {
+        "@next/next/no-img-element": 11,
+        "@next/next/no-location-assign-relative-destination": 1
+      }
+    },
+    "frontendAll": {
+      "scope": "frontend completo",
+      "errors": 0,
+      "warnings": 12,
+      "rules": {
+        "@next/next/no-img-element": 11,
+        "@next/next/no-location-assign-relative-destination": 1
+      }
+    },
+    "backendTests": {
+      "scope": "backend/test",
+      "errors": 0,
+      "warnings": 4,
+      "rules": {
+        "@typescript-eslint/no-unsafe-argument": 4
+      }
+    }
+  },
+  "limitations": [
+    "Backend lint existente nao aprovado",
+    "Validacao visual comparativa, nao pixel-perfect",
+    "Sem recuperacao de senha",
+    "Sem upload de avatar",
+    "Sem historico imutavel de XP ou conquistas independentes",
+    "Sem verificacao em outros navegadores ou auditoria completa de acessibilidade"
+  ]
+}

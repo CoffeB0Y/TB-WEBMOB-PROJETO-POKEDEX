@@ -1,0 +1,150 @@
+{
+  "columns": {
+    "_prisma_migrations": [
+      "id",
+      "checksum",
+      "finished_at",
+      "migration_name",
+      "logs",
+      "rolled_back_at",
+      "started_at",
+      "applied_steps_count"
+    ],
+    "Profile": [
+      "id",
+      "userId",
+      "fullName",
+      "birthDate",
+      "avatarUrl",
+      "createdAt",
+      "updatedAt",
+      "trainerName",
+      "region",
+      "trainerLevel",
+      "favoritePokemonId",
+      "username",
+      "bio"
+    ],
+    "User": [
+      "id",
+      "name",
+      "email",
+      "createdAt",
+      "passwordHash",
+      "sessionVersion"
+    ],
+    "Pokemon": [
+      "id",
+      "name",
+      "pokedexNumber",
+      "type",
+      "type2",
+      "height",
+      "weight",
+      "ability",
+      "description",
+      "evolution",
+      "legendary",
+      "spriteUrl",
+      "cryUrl"
+    ],
+    "CapturedPokemon": [
+      "id",
+      "userId",
+      "pokemonId",
+      "nickname",
+      "level",
+      "captureDate",
+      "captureLocation",
+      "isFavorite",
+      "hp",
+      "attack",
+      "defense",
+      "specialAttack",
+      "specialDefense",
+      "speed",
+      "createdAt",
+      "updatedAt",
+      "notes"
+    ],
+    "Team": [
+      "id",
+      "userId",
+      "name",
+      "isActive",
+      "createdAt",
+      "updatedAt",
+      "description"
+    ],
+    "TeamPokemon": [
+      "id",
+      "teamId",
+      "capturedPokemonId",
+      "position",
+      "createdAt"
+    ],
+    "Badge": [
+      "id",
+      "name",
+      "region",
+      "description",
+      "badgeNumber"
+    ],
+    "TrainerBadge": [
+      "id",
+      "userId",
+      "badgeId",
+      "obtainedAt"
+    ],
+    "PasswordResetToken": [
+      "tokenHash",
+      "userId",
+      "expiresAt",
+      "usedAt",
+      "createdAt"
+    ]
+  },
+  "tables": {
+    "_prisma_migrations": {
+      "count": 5,
+      "sha256": "0a83607c385c9d152c34e657e56d38e11abbe4a97e5c942fa202998f68a797b5"
+    },
+    "Profile": {
+      "count": 1,
+      "sha256": "294788520cc2b5021ce922fe9a5fea0fd83a2f0c0705d3dfd3b453a8776b492c"
+    },
+    "User": {
+      "count": 6,
+      "sha256": "aa40d19af2170b38cc463db007e68cdac245388f30ccfc1aeba88e9e41ae3c33"
+    },
+    "Pokemon": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "CapturedPokemon": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "Team": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "TeamPokemon": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "Badge": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "TrainerBadge": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "PasswordResetToken": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  },
+  "foreignKeyViolations": 0
+}

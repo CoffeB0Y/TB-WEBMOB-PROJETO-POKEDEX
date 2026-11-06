@@ -1,0 +1,43 @@
+{
+  "backend": {
+    "scope": "backend/src",
+    "errors": 693,
+    "warnings": 2,
+    "rules": {
+      "prettier/prettier": 679,
+      "@typescript-eslint/no-unused-vars": 10,
+      "@typescript-eslint/require-await": 2,
+      "@typescript-eslint/no-floating-promises": 1,
+      "@typescript-eslint/no-unsafe-argument": 1,
+      "@typescript-eslint/no-unnecessary-type-assertion": 1,
+      "@typescript-eslint/no-unsafe-member-access": 1
+    },
+    "note": "Passivo encontrado antes das corre\u00e7\u00f5es desta rodada; nenhuma mudan\u00e7a em backend/src nesta valida\u00e7\u00e3o."
+  },
+  "frontend": {
+    "scope": "frontend/app",
+    "errors": 0,
+    "warnings": 12,
+    "rules": {
+      "@next/next/no-img-element": 11,
+      "@next/next/no-location-assign-relative-destination": 1
+    }
+  },
+  "frontendAll": {
+    "scope": "frontend completo",
+    "errors": 0,
+    "warnings": 12,
+    "rules": {
+      "@next/next/no-img-element": 11,
+      "@next/next/no-location-assign-relative-destination": 1
+    }
+  },
+  "backendTests": {
+    "scope": "backend/test",
+    "errors": 0,
+    "warnings": 4,
+    "rules": {
+      "@typescript-eslint/no-unsafe-argument": 4
+    }
+  }
+}

@@ -1,0 +1,22 @@
+POST http://localhost:3000/api/profiles
+Content-Type: application/json
+
+{
+"userId": 2,
+"fullName": "Profile do Joaozinho",
+"birthDate": "1990-01-15T00:00:00Z",
+"avatarUrl": "pudim.com"
+}
+
+###
+GET http://localhost:3000/api/profiles/1
+
+###
+PUT http://localhost:3000/api/profiles/1
+Content-Type: application/json
+
+{
+"fullName": "Joazão",
+"birthDate": "1990-01-15T00:00:00Z",
+"avatarUrl": "pudim.com"
+}

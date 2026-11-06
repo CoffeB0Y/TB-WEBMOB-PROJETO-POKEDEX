@@ -1,0 +1,58 @@
+[
+  {
+    "filePath": "C:\\Users\\Prefeitura\\Documents\\PKFRONT\\app\\app-backend\\projeto pokedex\\test\\app.e2e-spec.ts",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-argument",
+        "severity": 1,
+        "message": "Unsafe argument of type `any` assigned to a parameter of type `App`.",
+        "line": 36,
+        "column": 13,
+        "nodeType": "CallExpression",
+        "messageId": "unsafeArgument",
+        "endLine": 36,
+        "endColumn": 32
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-argument",
+        "severity": 1,
+        "message": "Unsafe argument of type `any` assigned to a parameter of type `App`.",
+        "line": 40,
+        "column": 13,
+        "nodeType": "CallExpression",
+        "messageId": "unsafeArgument",
+        "endLine": 40,
+        "endColumn": 32
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-argument",
+        "severity": 1,
+        "message": "Unsafe argument of type `any` assigned to a parameter of type `App`.",
+        "line": 44,
+        "column": 13,
+        "nodeType": "CallExpression",
+        "messageId": "unsafeArgument",
+        "endLine": 44,
+        "endColumn": 32
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unsafe-argument",
+        "severity": 1,
+        "message": "Unsafe argument of type `any` assigned to a parameter of type `App`.",
+        "line": 49,
+        "column": 13,
+        "nodeType": "CallExpression",
+        "messageId": "unsafeArgument",
+        "endLine": 49,
+        "endColumn": 32
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 4,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  }
+]

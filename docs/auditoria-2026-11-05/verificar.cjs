@@ -1,0 +1,76 @@
+// Auditoria somente em docs/auditoria-2026-11-05/test.db. Não acessa o dev.db.
+const path = require('node:path');
+const fs = require('node:fs');
+const { createRequire } = require('node:module');
+const backend = path.resolve(__dirname, '../../app/app-backend/projeto pokedex');
+const req = createRequire(path.join(backend, 'package.json'));
+process.env.DATABASE_URL = `file:${path.join(__dirname, 'test.db').replaceAll('\\', '/')}`;
+process.env.JWT_SECRET = 'auditoria-local-exclusiva-nao-producao';
+const { NestFactory } = req('@nestjs/core');
+const { ValidationPipe } = req('@nestjs/common');
+const request = req('supertest');
+const { AppModule } = req('./dist/src/app.module');
+const { PrismaService } = req('./dist/src/database/prisma.service');
+const results = [];
+async function main() {
+ const app = await NestFactory.create(AppModule, { logger: false });
+ app.setGlobalPrefix('api');
+ app.useGlobalPipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true, transform: true }));
+ await app.init();
+ const api = request(app.getHttpServer()), db = app.get(PrismaService);
+ const record = (test, response, evidence) => { results.push({ test, status: response.status, evidence }); };
+ try {
+  const a = await api.post('/api/auth/register').send({name:'Audit Alpha',email:'alpha@example.test',password:'audit-password-123'});
+  const b = await api.post('/api/auth/register').send({name:'Audit Beta',email:'beta@example.test',password:'audit-password-123'});
+  if(a.status!==201 || b.status!==201) throw new Error('Falha ao preparar contas exclusivas');
+  const auth = { Authorization: `Bearer ${a.body.access_token}` };
+  let r = await api.post('/api/users').set(auth).send({name:'Audit Created',email:'created@example.test',passwordHash:'audit-password-123'});
+  record('Criar conta na tela users', r, {createdId:r.body.id});
+  r = await api.get('/api/users').set(auth);
+  record('Listagem apos criar outra conta',r,{ids:r.body.map(u=>u.id),onlySelf:r.body.length===1&&r.body[0].id===a.body.user.sub});
+  r = await api.put(`/api/users/${a.body.user.sub}`).set(auth).send({email:'beta@example.test'});
+  record('Atualizar conta com email ja existente',r,r.body.message);
+  r = await api.put(`/api/users/${a.body.user.sub}`).set(auth).send({name:'Audit Renamed'});
+  const me = await api.get('/api/profiles/me').set(auth);
+  record('Alterar nome pela rota users',r,{name:me.body.name,trainerName:me.body.profile.trainerName});
+  r = await api.put('/api/profiles/me').set(auth).send({trainerName:'Audit Alpha',email:'alpha@example.test',username:'audit_alpha',avatarUrl:'https://example.test/avatar.png',bio:'Teste'});
+  record('Preencher perfil',r,{username:r.body.profile?.username,avatarUrl:r.body.profile?.avatarUrl});
+  // Mesmo payload enviado pelo frontend quando os dois campos sao apagados.
+  r = await api.put('/api/profiles/me').set(auth).send({trainerName:'Audit Alpha',email:'alpha@example.test',bio:''});
+  record('Apagar username/avatar como o frontend',r,{username:r.body.profile?.username,avatarUrl:r.body.profile?.avatarUrl});
+  r = await api.put('/api/profiles/me').set(auth).send({trainerName:'Audit Alpha',email:'alpha@example.test',username:'',avatarUrl:''});
+  record('Tentar limpar perfil enviando strings vazias',r,r.body.message);
+  const species = await db.pokemon.create({data:{name:'audit-fixture',pokedexNumber:999999,type:'normal'}});
+  const capture = await api.post('/api/captured-pokemon').set(auth).send({pokemonId:species.id,level:5,captureDate:'2026-11-05T12:00:00.000Z'});
+  record('Criar captura',capture,{id:capture.body.id});
+  r = await api.patch(`/api/captured-pokemon/${capture.body.id}`).set(auth).send({level:null});
+  record('Nivel null em PATCH de captura',r,r.body.message);
+  r = await api.patch(`/api/captured-pokemon/${capture.body.id}`).set(auth).send({captureDate:'2026-11-06'});
+  record('Data ISO somente yyyy-mm-dd no PATCH',r,r.body.message);
+  r = await api.post('/api/teams').set(auth).send({name:'   '});
+  record('Equipe com nome somente espacos',r,{name:r.body.name});
+  const team = await api.post('/api/teams').set(auth).send({name:'Audit Team',capturedPokemonIds:[capture.body.id],isActive:true});
+  record('Criar equipe com captura propria',team,{id:team.body.id});
+  r = await api.patch(`/api/teams/${team.body.id}`).set(auth).send({name:'Audit Team',isActive:null});
+  record('isActive null em PATCH de equipe',r,r.body.message);
+  r = await api.get(`/api/captured-pokemon/${capture.body.id}`).set('Authorization',`Bearer ${b.body.access_token}`);
+  record('Consultar captura de outra conta',r,r.body.message);
+  const prefix='a'.repeat(72);
+  r = await api.post('/api/auth/register').send({name:'Audit Long',email:'long@example.test',password:prefix+'X'});
+  record('Cadastro aceita senha acima de 72 bytes',r,{accepted:r.status===201});
+  r = await api.post('/api/auth/login').send({email:'long@example.test',password:prefix+'Y'});
+  record('Login com senha diferente apos byte 72',r,{acceptedDifferentPassword:r.status===201});
+  r = await api.post('/api/auth/forgot-password').send({email:'alpha@example.test'});
+  record('Recuperacao com configuracao local atual',r,r.body.message);
+  r = await api.delete(`/api/captured-pokemon/${capture.body.id}`).set(auth);
+  record('Excluir captura remove integrante por cascade',r,{remainingMembers:await db.teamPokemon.count({where:{teamId:team.body.id}})});
+  r = await api.delete(`/api/teams/${team.body.id}`).set(auth);
+  record('Excluir equipe',r,{remaining:await db.team.count({where:{id:team.body.id}})});
+  r = await api.delete(`/api/users/${a.body.user.sub}`).set(auth);
+  record('Excluir propria conta em cascade',r,{profile:await db.profile.count({where:{userId:a.body.user.sub}}),captures:await db.capturedPokemon.count({where:{userId:a.body.user.sub}}),teams:await db.team.count({where:{userId:a.body.user.sub}})});
+  r = await api.get('/api/users').set(auth);
+  record('Token de conta excluida',r,r.body.message);
+ } finally { await app.close(); fs.writeFileSync(path.join(__dirname,'casos-adicionais.json'),JSON.stringify(results,null,2)); }
+ console.log(JSON.stringify(results,null,2));
+}
+main().catch(error=>{console.error(error.message);process.exitCode=1});
